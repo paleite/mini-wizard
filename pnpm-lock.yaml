@@ -10,13 +10,19 @@ dependencies:
     version: 3.1.1(react-hook-form@7.45.2)
   '@xstate/react':
     specifier: ^3.2.2
-    version: 3.2.2(@types/react@18.2.15)(react@18.2.0)
+    version: 3.2.2(@types/react@18.2.15)(react@18.2.0)(xstate@4.38.2)
   react:
     specifier: ^18.2.0
     version: 18.2.0
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  react-hook-form:
+    specifier: ^7.45.2
+    version: 7.45.2(react@18.2.0)
+  xstate:
+    specifier: ^4.38.2
+    version: 4.38.2
   zod:
     specifier: ^3.21.4
     version: 3.21.4
@@ -780,7 +786,7 @@ packages:
       - supports-color
     dev: true
 
-  /@xstate/react@3.2.2(@types/react@18.2.15)(react@18.2.0):
+  /@xstate/react@3.2.2(@types/react@18.2.15)(react@18.2.0)(xstate@4.38.2):
     resolution: {integrity: sha512-feghXWLedyq8JeL13yda3XnHPZKwYDN5HPBLykpLeuNpr9178tQd2/3d0NrH6gSd0sG5mLuLeuD+ck830fgzLQ==}
     peerDependencies:
       '@xstate/fsm': ^2.0.0
@@ -795,6 +801,7 @@ packages:
       react: 18.2.0
       use-isomorphic-layout-effect: 1.1.2(@types/react@18.2.15)(react@18.2.0)
       use-sync-external-store: 1.2.0(react@18.2.0)
+      xstate: 4.38.2
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -1806,6 +1813,10 @@ packages:
   /wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
     dev: true
+
+  /xstate@4.38.2:
+    resolution: {integrity: sha512-Fba/DwEPDLneHT3tbJ9F3zafbQXszOlyCJyQqqdzmtlY/cwE2th462KK48yaANf98jHlP6lJvxfNtN0LFKXPQg==}
+    dev: false
 
   /yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
