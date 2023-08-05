@@ -1,0 +1,6 @@
+# File extensions
+*.svg
+
+# Generated files
+/cspell.json
+/pnpm-lock.yaml

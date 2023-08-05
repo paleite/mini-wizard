@@ -1,18 +1,26 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import type { WizardMachineContext } from "./schemas";
 import { Step2bFormSchema } from "./schemas";
+import type { WizardMachineEvent } from "./wizard-machine";
 
-const Step2bForm = ({ onSubmit }) => {
+const Step2bForm: React.FunctionComponent<{
+  onSubmit: (event: WizardMachineEvent) => void;
+}> = ({ onSubmit }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<WizardMachineContext>({
     resolver: zodResolver(Step2bFormSchema),
   });
 
   return (
-    <form onSubmit={handleSubmit((data) => onSubmit({ type: "NEXT", data }))}>
+    <form
+      onSubmit={handleSubmit((data) => {
+        onSubmit({ type: "NEXT", data });
+      })}
+    >
       {/* Replace with your array */}
       {["option1", "option2", "option3"].map((option) => (
         <label key={option}>
@@ -24,7 +32,7 @@ const Step2bForm = ({ onSubmit }) => {
           {option}
         </label>
       ))}
-      {errors.arraySelection?.message && (
+      {errors.arraySelection?.message !== undefined && (
         <p>{errors.arraySelection.message.toString()}</p>
       )}
       <br />
@@ -33,4 +41,4 @@ const Step2bForm = ({ onSubmit }) => {
   );
 };
 
-export default Step2bForm;
+export { Step2bForm };

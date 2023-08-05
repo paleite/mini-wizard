@@ -1,13 +1,14 @@
-import Step1Form from "./Step1Form";
-import Step2aForm from "./Step2aForm";
-import Step2bForm from "./Step2bForm";
-import Step3 from "./Step3";
-import { WizardMachineContext } from "./wizardMachine";
+import { Step1Form } from "./Step1Form";
+import { Step2aForm } from "./Step2aForm";
+import { Step2bForm } from "./Step2bForm";
+import { Step3 } from "./Step3";
+import type { WizardMachineEvent } from "./wizard-machine";
+import { WizardMachineContext } from "./wizard-machine";
 
-const Form = () => {
+const Form: React.FunctionComponent = () => {
   const [state, send] = WizardMachineContext.useActor();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: WizardMachineEvent) => {
     send(event);
   };
 
@@ -32,4 +33,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export { Form };

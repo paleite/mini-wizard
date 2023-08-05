@@ -7,7 +7,7 @@ const ApprovalPolicySchema = z.enum([
   "SpecificUsers",
 ]);
 const Step1FormSchema = z.object({
-  ApprovalPolicy: ApprovalPolicySchema,
+  approvalPolicy: ApprovalPolicySchema,
 });
 
 const PercentageSchema = z.number().min(0).max(100);
@@ -21,33 +21,33 @@ const Step2bFormSchema = z.object({
 });
 
 const WizardContextSchema = z.object({
-  ApprovalPolicy: ApprovalPolicySchema.nullable(),
+  approvalPolicy: ApprovalPolicySchema.nullable(),
   percentage: PercentageSchema.nullable(),
   arraySelection: ArraySelectionSchema.nullable(),
 });
 
-type WizardContext = z.infer<typeof WizardContextSchema>;
+type WizardContextType = z.infer<typeof WizardContextSchema>;
 
 /// ^ For the wizard
 /// v For the submitted form
 
 const AnySchema = z.object({
-  ApprovalPolicy: z.literal("Any"),
+  approvalPolicy: z.literal("Any"),
 });
 
 const AllSchema = z.object({
-  ApprovalPolicy: z.literal("All"),
+  approvalPolicy: z.literal("All"),
 });
 
 const BoardPercentageSchema = z
   .object({
-    ApprovalPolicy: z.literal("BoardPercentage"),
+    approvalPolicy: z.literal("BoardPercentage"),
   })
   .and(Step2aFormSchema);
 
 const SpecificUsersSchema = z
   .object({
-    ApprovalPolicy: z.literal("SpecificUsers"),
+    approvalPolicy: z.literal("SpecificUsers"),
   })
   .and(Step2bFormSchema);
 
@@ -71,4 +71,4 @@ export {
   Step2bFormSchema,
   SubmittedSchema,
 };
-export type { Submitted, WizardContext };
+export type { Submitted, WizardContextType as WizardMachineContext };

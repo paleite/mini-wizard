@@ -1,6 +1,8 @@
-import { WizardMachineContext } from "./wizardMachine";
+import { WizardMachineContext } from "./wizard-machine";
 
-const Step3 = ({ onSubmit }) => {
+const Step3: React.FunctionComponent<{
+  onSubmit: () => void;
+}> = ({ onSubmit }) => {
   const [state] = WizardMachineContext.useActor();
 
   return (
@@ -14,4 +16,4 @@ const Step3 = ({ onSubmit }) => {
   );
 };
 
-export default Step3;
+export { Step3 };

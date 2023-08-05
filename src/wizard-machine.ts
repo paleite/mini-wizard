@@ -1,15 +1,17 @@
 import { createActorContext } from "@xstate/react";
 import { assign, createMachine } from "xstate";
-import type { WizardContext } from "./schemas";
+import type { WizardMachineContext } from "./schemas";
 
-export const wizardMachine = createMachine<
-  WizardContext,
-  { type: "NEXT"; data: WizardContext }
->({
+type WizardMachineEvent = {
+  type: "NEXT";
+  data: WizardMachineContext;
+};
+
+const wizardMachine = createMachine<WizardMachineContext, WizardMachineEvent>({
   id: "wizard",
   initial: "step1",
   context: {
-    ApprovalPolicy: null,
+    approvalPolicy: null,
     percentage: null,
     arraySelection: null,
   },
@@ -20,26 +22,26 @@ export const wizardMachine = createMachine<
           {
             target: "step3",
             cond: (_context, event) =>
-              event.data.ApprovalPolicy === "Any" ||
-              event.data.ApprovalPolicy === "All",
+              event.data.approvalPolicy === "Any" ||
+              event.data.approvalPolicy === "All",
             actions: assign({
-              ApprovalPolicy: (_context, event) => event.data.ApprovalPolicy,
+              approvalPolicy: (_context, event) => event.data.approvalPolicy,
             }),
           },
           {
             target: "step2a",
             cond: (_context, event) =>
-              event.data.ApprovalPolicy === "BoardPercentage",
+              event.data.approvalPolicy === "BoardPercentage",
             actions: assign({
-              ApprovalPolicy: (_context, event) => event.data.ApprovalPolicy,
+              approvalPolicy: (_context, event) => event.data.approvalPolicy,
             }),
           },
           {
             target: "step2b",
             cond: (_context, event) =>
-              event.data.ApprovalPolicy === "SpecificUsers",
+              event.data.approvalPolicy === "SpecificUsers",
             actions: assign({
-              ApprovalPolicy: (_context, event) => event.data.ApprovalPolicy,
+              approvalPolicy: (_context, event) => event.data.approvalPolicy,
             }),
           },
         ],
@@ -71,4 +73,7 @@ export const wizardMachine = createMachine<
   },
 });
 
-export const WizardMachineContext = createActorContext(wizardMachine);
+const WizardMachineActorContext = createActorContext(wizardMachine);
+
+export { wizardMachine, WizardMachineActorContext as WizardMachineContext };
+export type { WizardMachineEvent };
